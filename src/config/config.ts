@@ -1,4 +1,4 @@
-import { ConfigModule, registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config';
 
 export enum configKeys {
   App = 'app',
@@ -23,4 +23,10 @@ export const JwtConfig = registerAs(configKeys.Jwt, () => ({
   refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
 }));
 
-export const configurations = [appConfig, dbConfig, JwtConfig];
+
+
+export const configurations = [
+  appConfig,
+  dbConfig,
+  JwtConfig,
+];
