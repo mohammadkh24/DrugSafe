@@ -1,3 +1,4 @@
 export enum entityNames {
-    Drug = "drugs"
+  Drug = 'drugs',
+  Interaction = 'interactions',
 }
