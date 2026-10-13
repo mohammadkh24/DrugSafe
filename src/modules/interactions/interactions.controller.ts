@@ -23,7 +23,7 @@ import { UpdateInteractionDto } from './dto/update-interaction.dto';
 import { QueryInteractionsDto } from './dto/query-interactions.dto';
 
 @ApiTags('Interactions')
-@Controller('api/interactions')
+@Controller('interactions')
 export class InteractionsController {
   constructor(
     private readonly interactionsService: InteractionsService,

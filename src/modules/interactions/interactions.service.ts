@@ -88,14 +88,19 @@ export class InteractionsService {
   }
 
   private async getInteractionOrFail(id: string) {
-    const interaction = await this.interactionsRepository.findOneBy({
-      id,
-    });
-
+    const interaction = await this.interactionsRepository
+      .createQueryBuilder('interaction')
+      .leftJoinAndSelect('interaction.drugA', 'drugA')
+      .leftJoinAndSelect('interaction.drugB', 'drugB')
+      .where('interaction.id = :id', { id })
+      .getOne();
+  
     if (!interaction) {
-      throw new NotFoundException(interactionMessages.INTERACTION_NOT_FOUND);
+      throw new NotFoundException(
+        interactionMessages.INTERACTION_NOT_FOUND,
+      );
     }
-
+  
     return interaction;
   }
 
@@ -135,8 +140,10 @@ export class InteractionsService {
       sortOrder = 'DESC',
     } = query;
 
-    const qb = this.interactionsRepository.createQueryBuilder('interaction');
-
+    const qb = this.interactionsRepository
+    .createQueryBuilder('interaction')
+    .leftJoinAndSelect('interaction.drugA', 'drugA')
+    .leftJoinAndSelect('interaction.drugB', 'drugB');
     if (search?.trim()) {
       qb.andWhere(
         `(
