@@ -24,3 +24,16 @@ export enum interactionMessages {
   INTERACTION_DRUG_INACTIVE = 'ثبت تعامل برای داروی غیرفعال مجاز نیست',
   INTERACTION_ALREADY_EXISTS = 'تعامل بین این دو دارو قبلاً ثبت شده است',
 }
+
+export enum userMessages {
+  USER_CREATED = 'کاربر با موفقیت ثبت شد',
+  USERS_FETCHED = 'لیست کاربران با موفقیت دریافت شد',
+  USER_FETCHED = 'اطلاعات کاربر با موفقیت دریافت شد',
+  USER_UPDATED = 'اطلاعات کاربر با موفقیت ویرایش شد',
+  USER_NOT_FOUND = 'کاربر مورد نظر یافت نشد',
+  USER_DELETED = "کاربر با موفقیت حذف شد",
+
+  USER_EMAIL_ALREADY_EXISTS = 'این ایمیل قبلاً ثبت شده است',
+  USER_ACCOUNT_INACTIVE = 'حساب کاربری غیرفعال است',
+  USER_INVALID_CREDENTIALS = 'ایمیل یا رمز عبور اشتباه است',
+}

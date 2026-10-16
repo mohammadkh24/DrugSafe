@@ -6,6 +6,8 @@ import { TypeOrmDbConfig } from './config/typeorm-db-config';
 import { DrugsModule } from './modules/drugs/drugs.module';
 import { InteractionsModule } from './modules/interactions/interactions.module';
 import { MedicationChecksModule } from './modules/medication-checks/medication-checks.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { MedicationChecksModule } from './modules/medication-checks/medication-c
     DrugsModule,
     InteractionsModule,
     MedicationChecksModule,
+    UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
