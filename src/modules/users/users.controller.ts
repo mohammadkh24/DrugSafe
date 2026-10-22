@@ -9,8 +9,10 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -20,14 +22,18 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { QueryUsersDto } from './dto/query-users.dto';
+import { JwtAuthGuard } from '../../common/guards/auth.gurad';
 
 @ApiTags('Users')
+@ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
   ) {}
 
+  
   @Post()
   @ApiOperation({ summary: 'ایجاد کاربر جدید' })
   @ApiResponse({ status: 201, description: 'کاربر با موفقیت ایجاد شد' })
@@ -35,6 +41,7 @@ export class UsersController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
+
 
   @Get()
   @ApiOperation({

@@ -1,26 +1,63 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+
+import {
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+
+import { User } from '../users/entities/user.entity';
+import { LoginDto } from './dto/login.dto';
+import { authMessages } from '../../common/enums/messages.enum';
+import type { SignOptions } from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
-  }
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+    private readonly jwtService: JwtService,
+  ) {}
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+  async login(loginDto: LoginDto) {
+    const email = loginDto.email.trim().toLowerCase();
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.email = :email', { email })
+      .getOne();
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
+    if (
+      !user ||
+      !(await bcrypt.compare(loginDto.password, user.passwordHash))
+    ) {
+      throw new UnauthorizedException(
+        authMessages.INVALID_CREDENTIALS,
+      );
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    if (!user.isActive) {
+      throw new UnauthorizedException(
+        authMessages.ACCOUNT_INACTIVE,
+      );
+    }
+
+    const accessToken = await this.jwtService.signAsync({
+      sub: user.id,
+      email: user.email,
+    });
+
+    const { passwordHash, ...publicUser } = user;
+
+    return {
+      message: authMessages.LOGIN_SUCCESSFUL,
+      data: {
+        accessToken,
+        user: publicUser,
+      },
+    };
   }
 }

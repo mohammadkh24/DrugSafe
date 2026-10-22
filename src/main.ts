@@ -39,10 +39,12 @@ app.enableCors({
   app.useGlobalFilters(new AllExceptionsFilter())
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('product-manage')
-    .setDescription('.........')
+    .setTitle('DrugSafe')
+    .setDescription('Drug Store pannel')
     .addBearerAuth()
     .setVersion('1.0.0')
+    .addTag("Auth")
+    .addTag("Users")
 
     .build();
 

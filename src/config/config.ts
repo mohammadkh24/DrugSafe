@@ -19,8 +19,8 @@ export const dbConfig = registerAs(configKeys.Db, () => ({
 }));
 
 export const JwtConfig = registerAs(configKeys.Jwt, () => ({
-  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
-  refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+  JWT_SECRET: process.env.JWT_SECRET,
+  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN,
 }));
 
 

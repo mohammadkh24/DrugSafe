@@ -2,6 +2,16 @@ export enum publicMessages {
   OPERATION_SUCCESSFUL = 'عملیات با موفقیت انجام شد',
 }
 
+
+
+export enum authMessages {
+  LOGIN_SUCCESSFUL = 'ورود با موفقیت انجام شد',
+  INVALID_CREDENTIALS = 'ایمیل یا رمز عبور اشتباه است',
+  ACCOUNT_INACTIVE = 'حساب کاربری غیرفعال است',
+  TOKEN_INVALID = 'توکن نامعتبر یا منقضی شده است',
+}
+
+
 export enum drugMessages {
   DRUG_CREATED = 'دارو با موفقیت ثبت شد',
   DRUGS_FETCHED = 'لیست داروها با موفقیت دریافت شد',
