@@ -2,15 +2,12 @@ export enum publicMessages {
   OPERATION_SUCCESSFUL = 'عملیات با موفقیت انجام شد',
 }
 
-
-
 export enum authMessages {
   LOGIN_SUCCESSFUL = 'ورود با موفقیت انجام شد',
   INVALID_CREDENTIALS = 'ایمیل یا رمز عبور اشتباه است',
   ACCOUNT_INACTIVE = 'حساب کاربری غیرفعال است',
   TOKEN_INVALID = 'توکن نامعتبر یا منقضی شده است',
 }
-
 
 export enum drugMessages {
   DRUG_CREATED = 'دارو با موفقیت ثبت شد',
@@ -41,9 +38,20 @@ export enum userMessages {
   USER_FETCHED = 'اطلاعات کاربر با موفقیت دریافت شد',
   USER_UPDATED = 'اطلاعات کاربر با موفقیت ویرایش شد',
   USER_NOT_FOUND = 'کاربر مورد نظر یافت نشد',
-  USER_DELETED = "کاربر با موفقیت حذف شد",
+  USER_DELETED = 'کاربر با موفقیت حذف شد',
 
   USER_EMAIL_ALREADY_EXISTS = 'این ایمیل قبلاً ثبت شده است',
   USER_ACCOUNT_INACTIVE = 'حساب کاربری غیرفعال است',
   USER_INVALID_CREDENTIALS = 'ایمیل یا رمز عبور اشتباه است',
+}
+
+export enum customerMessages {
+  CUSTOMER_CREATED = 'مشتری با موفقیت ثبت شد',
+  CUSTOMERS_FETCHED = 'لیست مشتریان دریافت شد',
+  CUSTOMER_FETCHED = 'اطلاعات مشتری دریافت شد',
+  CUSTOMER_UPDATED = 'اطلاعات مشتری با موفقیت ویرایش شد',
+  CUSTOMER_DEACTIVATED = 'پرونده مشتری غیرفعال شد',
+  CUSTOMER_NOT_FOUND = 'مشتری موردنظر پیدا نشد',
+  NATIONAL_CODE_EXISTS = 'مشتری دیگری با این کد ملی ثبت شده است',
+  CUSTOMER_ALREADY_INACTIVE = 'پرونده مشتری از قبل غیرفعال است',
 }

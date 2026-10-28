@@ -8,6 +8,7 @@ import { InteractionsModule } from './modules/interactions/interactions.module';
 import { MedicationChecksModule } from './modules/medication-checks/medication-checks.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CustomersModule } from './modules/customers/customers.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { AuthModule } from './modules/auth/auth.module';
     MedicationChecksModule,
     UsersModule,
     AuthModule,
+    CustomersModule,
   ],
 })
 export class AppModule {}
