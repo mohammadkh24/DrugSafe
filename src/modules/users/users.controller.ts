@@ -1,4 +1,3 @@
-
 import {
   Body,
   Controller,
@@ -26,14 +25,11 @@ import { JwtAuthGuard } from '../../common/guards/auth.gurad';
 
 @ApiTags('Users')
 @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
-  constructor(
-    private readonly usersService: UsersService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
-  
   @Post()
   @ApiOperation({ summary: 'ایجاد کاربر جدید' })
   @ApiResponse({ status: 201, description: 'کاربر با موفقیت ایجاد شد' })
@@ -41,7 +37,6 @@ export class UsersController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
-
 
   @Get()
   @ApiOperation({

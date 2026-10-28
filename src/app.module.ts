@@ -9,6 +9,7 @@ import { MedicationChecksModule } from './modules/medication-checks/medication-c
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CustomersModule } from './modules/customers/customers.module';
+import { PrescriptionsModule } from './modules/prescriptions/prescriptions.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { CustomersModule } from './modules/customers/customers.module';
     UsersModule,
     AuthModule,
     CustomersModule,
+    PrescriptionsModule,
   ],
 })
 export class AppModule {}

@@ -70,13 +70,16 @@ export class MedicationChecksService {
       );
     }
 
-    const interactions = await this.interactionsRepository.find({
-      where: {
-        drugAId: In(drugIds),
-        drugBId: In(drugIds),
+    const interactions = await this.interactionsRepository
+      .createQueryBuilder('interaction')
+      .where(
+        '(interaction.drugAId IN (:...drugIds) OR interaction.drugBId IN (:...drugIds))',
+        { drugIds },
+      )
+      .andWhere('interaction.isActive = :isActive', {
         isActive: true,
-      },
-    });
+      })
+      .getMany();
 
     const interactionMap = new Map(
       interactions.map((interaction) => [

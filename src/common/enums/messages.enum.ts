@@ -55,3 +55,19 @@ export enum customerMessages {
   NATIONAL_CODE_EXISTS = 'مشتری دیگری با این کد ملی ثبت شده است',
   CUSTOMER_ALREADY_INACTIVE = 'پرونده مشتری از قبل غیرفعال است',
 }
+
+
+export enum prescriptionMessages {
+  PRESCRIPTION_CREATED = 'نسخه با موفقیت ثبت شد',
+  PRESCRIPTION_NOT_FOUND = 'نسخه موردنظر یافت نشد',
+
+  PRESCRIPTION_CUSTOMER_NOT_FOUND = 'مشتری موردنظر یافت نشد',
+  PRESCRIPTION_CUSTOMER_INACTIVE = 'ثبت نسخه برای مشتری غیرفعال مجاز نیست',
+
+  PRESCRIPTION_DUPLICATE_DRUG = 'یک دارو نباید بیش از یک بار در اقلام نسخه ثبت شود',
+  PRESCRIPTION_DRUG_NOT_FOUND = 'یک یا چند دارو یافت نشد',
+  PRESCRIPTION_DRUG_INACTIVE = 'نسخه شامل داروی غیرفعال است',
+
+  PRESCRIPTION_SINGLE_DRUG_DISCLAIMER =
+    'این نسخه فقط یک دارو دارد و بررسی تداخل بین داروها انجام نشده است.',
+}

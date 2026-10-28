@@ -8,9 +8,11 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiParam,
   ApiResponse,
@@ -21,8 +23,11 @@ import { InteractionsService } from './interactions.service';
 import { CreateInteractionDto } from './dto/create-interaction.dto';
 import { UpdateInteractionDto } from './dto/update-interaction.dto';
 import { QueryInteractionsDto } from './dto/query-interactions.dto';
+import { JwtAuthGuard } from 'src/common/guards/auth.gurad';
 
 @ApiTags('Interactions')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('interactions')
 export class InteractionsController {
   constructor(

@@ -1,6 +1,7 @@
 
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -8,8 +9,11 @@ import {
 
 import { MedicationChecksService } from './medication-checks.service';
 import { CheckMedicationsDto } from './dto/create-medication-check.dto';
+import { JwtAuthGuard } from 'src/common/guards/auth.gurad';
 
 @ApiTags('Medication Checks')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('medication-checks')
 export class MedicationChecksController {
   constructor(

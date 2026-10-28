@@ -9,8 +9,10 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiQuery,
   ApiTags,
@@ -20,8 +22,11 @@ import { DrugsService } from './drugs.service';
 import { CreateDrugDto } from './dto/create-drug.dto';
 import { UpdateDrugDto } from './dto/update-drug.dto';
 import { QueryDrugsDto } from './dto/query-drugs.dto';
+import { JwtAuthGuard } from 'src/common/guards/auth.gurad';
 
 @ApiTags('Drugs')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('drugs')
 export class DrugsController {
   constructor(private readonly drugsService: DrugsService) {}
